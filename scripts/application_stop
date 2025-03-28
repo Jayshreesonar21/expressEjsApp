@@ -1,0 +1,9 @@
+#!/bin/bash
+cd /home/ec2-user/express-app
+pm2 stop "express-app"
+pm2 delete --name "express-app"
+
+
+
+
+
