@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/and_backend_2024
+    destination: /home/ec2-user/express-app
 hooks:
   AfterInstall:
     - location: scripts/after_install
