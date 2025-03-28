@@ -7,13 +7,13 @@ hooks:
   AfterInstall:
     - location: scripts/after_install
       timeout: 300
-      runas: ubuntu
+      runas: ec2-user
   ApplicationStart:
     - location: scripts/application_start
       timeout: 300
-      runas: ubuntu
+      runas: ec2-user
   ApplicationStop:
     - location: scripts/application_stop
       timeout: 300
-      runas: ubuntu
+      runas: ec2-user
  
