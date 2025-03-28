@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', async function(req, res, next) {
   const [rows] = await db.query('SELECT * FROM student');
   console.log("get students==>", rows);
-  res.send(`respond with a resource`);
+  res.send(`respond with a resource `);
 });
 
 module.exports = router;
