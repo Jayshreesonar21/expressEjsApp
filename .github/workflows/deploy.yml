@@ -15,8 +15,7 @@ jobs:
 
       - name: Install AWS CLI
         run: |
-          sudo apt update
-          sudo apt install -y awscli
+          which aws
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
