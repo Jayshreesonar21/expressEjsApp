@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 FOLDER="/var/www/html/express-app"
-sudo chown -R ubuntu:ubuntu $FOLDER
+sudo chown -R ec2-user:ec2-user $FOLDER
 cd $FOLDER
  
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
  
 # npm run build
 pm2 start ./bin/www --name "express-app"

@@ -1,13 +1,28 @@
 #!/bin/bash
 set -e
+
+# Define folder path
 FOLDER="/var/www/html/express-app"
-sudo chown -R ubuntu:ubuntu $FOLDER
+sudo chown -R ec2-user:ec2-user $FOLDER
 cd $FOLDER
- 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
- 
-pm2 flush "express-app"
-pm2 stop "express-app"
-pm2 delete "express-app"
+
+# Load NVM properly (Amazon Linux 2023 does not load profile automatically)
+export NVM_DIR="/home/ec2-user/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    source "$NVM_DIR/nvm.sh"
+fi
+
+# Ensure PM2 is installed (if not, install it)
+if ! command -v pm2 &> /dev/null; then
+    echo "PM2 not found. Installing PM2..."
+    npm install -g pm2
+fi
+
+# Stop and delete the PM2 process if it exists
+if pm2 list | grep -q "express-app"; then
+    pm2 flush "express-app"
+    pm2 stop "express-app"
+    pm2 delete "express-app"
+else
+    echo "express-app is not running."
+fi
